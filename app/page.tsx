@@ -75,11 +75,11 @@ export default function Home() {
           </pre>
    <div className="h-full w-full flex ">
     <ChartSection data={data} />
-             <Map coordinates={data.coordinates} cityName={city} />
           </div>
           <div className="mt-8 w-full max-w-4xl">
-            <CompareCity initialCityData={data} initialCityName={city} />
+             <Map coordinates={data.coordinates} cityName={city} />
           </div>
+            <CompareCity initialCityData={data} initialCityName={city} />
         </div>
       )}
     </main>

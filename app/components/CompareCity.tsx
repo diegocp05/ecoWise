@@ -5,7 +5,6 @@ import axios from 'axios';
 import { SearchBar } from './SearchBar';
 import { ComparisonRow } from './ComparisonRow';
 
-// Reutilize a interface de dados da sua página principal
 interface CityData {
   temperature: number;
   aqi: number;

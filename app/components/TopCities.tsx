@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 // Ícone para dar um toque especial
 
-// 1. Definir a "forma" dos dados que esperamos receber do backend
 interface TopCity {
   id: number;
   name: string;
@@ -12,16 +11,15 @@ interface TopCity {
 }
 
 export const TopCities = () => {
-  // 2. Estados para gerenciar os dados, o carregamento e possíveis erros
+  //  Estados para gerenciar os dados, o carregamento e possíveis erros
   const [cities, setCities] = useState<TopCity[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // 3. useEffect para buscar os dados assim que o componente for montado
+  //  useEffect para buscar os dados assim que o componente for montado
   useEffect(() => {
     const fetchTopCities = async () => {
       try {
-        // IMPORTANTE: Use uma variável de ambiente para a URL da API
         const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
         const response = await axios.get(`${apiUrl}/api/weather/stats/top-cities`);
         setCities(response.data);

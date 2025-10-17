@@ -28,11 +28,12 @@ router.get('/:city', async (req, res) => {
         // 4. Montar a resposta final
         const responseData = {
             temperature: main.temp,
+            cityName,
             aqi: current.pollution.aqius,
             mainPollutant: current.pollution.mainus,
             coordinates: coord,
         };
-
+        console.log(city);
         res.json(responseData);
 
     } catch (error) {

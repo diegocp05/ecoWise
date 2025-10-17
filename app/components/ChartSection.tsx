@@ -1,8 +1,7 @@
 'use client';
 
 import { RadialBarChart, RadialBar, ResponsiveContainer, PolarAngleAxis } from 'recharts';
-import { getAqiInfo } from '../lib/aquiHelper'; // Importe a função que acabamos de criar
-
+import { getAqiInfo } from '../lib/aquiHelper'; 
 interface ChartSectionProps {
   data: {
     aqi: number;
@@ -18,7 +17,7 @@ export const ChartSection = ({ data }: ChartSectionProps) => {
     {
       name: 'AQI',
       value: aqi,
-      fill: aqiInfo.color, // A cor da barra virá da nossa lógica!
+      fill: aqiInfo.color, 
     },
   ];
 

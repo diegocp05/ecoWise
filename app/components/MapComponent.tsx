@@ -1,4 +1,4 @@
-'use client'; // Essencial! Diz ao Next.js que este é um Componente de Cliente.
+'use client'; 
 
 import { MapContainer, TileLayer, Marker, Tooltip } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css'; // Importa o CSS obrigatório do Leaflet
@@ -8,7 +8,7 @@ import L from 'leaflet';
 // O Leaflet tem um problema conhecido com bundlers como o Webpack (usado pelo Next.js)
 // onde o ícone do marcador não aparece. Esta é a correção oficial.
 const defaultIcon = L.icon({
-  iconUrl: '/marker-icon.png', // Verifique se você tem esse ícone na pasta /public
+  iconUrl: '/marker-icon.png', 
   iconRetinaUrl: '/marker-icon-2x.png', // Opcional, para telas de alta resolução
   shadowUrl: '/marker-shadow.png', // Sombra do ícone
   iconSize: [25, 41],
@@ -30,8 +30,6 @@ interface MapProps {
 }
 
 export const MapComponent = ({ coordinates, cityName }: MapProps) => {
-  // A chave 'key' no MapContainer é um truque para forçar o React a recriar
-  // o mapa quando as coordenadas mudam. Sem isso, o mapa pode não recentralizar.
   const mapKey = `${coordinates.lat}-${coordinates.lon}`;
 
   return (
