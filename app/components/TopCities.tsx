@@ -65,7 +65,7 @@ export const TopCities = ({onCityClick} : TopCityProps) => {
     <div className="bg-slate-800 rounded-xl p-6 shadow-lg w-full mt-8">
       <div className="flex items-center gap-2 mb-4">
         <div className="text-yellow-400" />
-        <h3 className="text-lg font-semibold text-gray-300">
+        <h3 className="md:text-lg text-sm font-semibold text-gray-300">
           Cidades Mais Buscadas
         </h3>
       </div>
@@ -77,7 +77,7 @@ export const TopCities = ({onCityClick} : TopCityProps) => {
               
               <button
                 onClick={() => onCityClick(city.name)} // Ao clicar, chama a função do pai!
-                className="capitalize font-medium text-left text-blue-400 hover:underline cursor-pointer"
+                className="capitalize font-medium text-left text-blue-400 hover:underline cursor-pointer text-sm md:text-lg"
               >
                 {city.name}
               </button>

@@ -5,7 +5,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { SearchBar } from './components/SearchBar';
  import { CityStats } from './components/CityStats'; 
- import { AirQualityCard } from './components/AirQualityCard';
+import { MetricsPanel } from './components/MetricsPanel';
 import { MapComponent } from './components/MapComponent';
 import { ChartSection } from './components/ChartSection';
 import { TopCities } from './components/TopCities';
@@ -17,6 +17,11 @@ interface CityData {
   aqi: number;
   mainPollutant: string;
   coordinates: { lat: number; lon: number };
+  name: string;
+  humidity: number;
+  windSpeed: number;
+  visibility: number;
+  ecoScore: number;
 }
 
 export default function Home() {
@@ -63,18 +68,15 @@ export default function Home() {
       {data && (
         <div className="mt-8 w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-6">
           {data && (
-            <div className="mt-8 w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-6">
-    {/* Substitua o <pre> ou adicione junto */}
-    <CityStats data={data} />
-
-    {/* Aqui virão os outros componentes, como AirQualityCard, Map, etc. */}
-    <AirQualityCard data={data} /> 
-  </div>
+            <div className="mt-8 w-full max-w-4xl gap-6">
+              <CityStats data={data} />
+            </div>
 )}
 
-          <div className="mt-8 w-full max-w-4xl h-90  md:h-auto">
-             <Map coordinates={data.coordinates} cityName={city} />
+          <div className="mt-8 w-full max-w-4xl h-90  md:h-60">
+<Map coordinates={data.coordinates} cityName={city} />
           </div>
+<MetricsPanel data={data} />
             <GreenestCities onCityClick={handleSearch} />
    <div className="h-full w-full flex ">
     <ChartSection data={data} />

@@ -5,11 +5,12 @@ import { getAqiInfo } from '../lib/aquiHelper';
 interface ChartSectionProps {
   data: {
     aqi: number;
+    mainPollutant: string;
   };
 }
 
 export const ChartSection = ({ data }: ChartSectionProps) => {
-  const { aqi } = data;
+  const { aqi, mainPollutant } = data;
   const aqiInfo = getAqiInfo(aqi);
 
   // Recharts espera os dados em um formato de array de objetos
@@ -28,7 +29,7 @@ export const ChartSection = ({ data }: ChartSectionProps) => {
           Índice de Qualidade do Ar (AQI)
         </h3>
         <p className="text-sm text-gray-400">
-          Baseado no poluente principal
+          Baseado no poluente principal: <strong className='text-white'>{mainPollutant}</strong>
         </p>
       </div>
 

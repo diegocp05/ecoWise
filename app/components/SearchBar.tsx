@@ -21,8 +21,8 @@ export const SearchBar = ({ onSearch }: SearchBarProps) => {
         type="text"
         value={city}
         onChange={(e) => setCity(e.target.value)}
-        placeholder="Digite o nome de uma cidade..."
-        className="p-2 border rounded-md w-full text-white"
+        placeholder="Digite uma cidade..."
+        className="p-2 border rounded-md w-full text-white md:text-lg text-sm"
       />
       <button type="submit" className="bg-blue-500 text-white p-2 rounded-md">
         Buscar
