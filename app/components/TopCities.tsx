@@ -10,7 +10,11 @@ interface TopCity {
   count: number;
 }
 
-export const TopCities = () => {
+interface TopCityProps{
+     onCityClick: (city: string) => void; // É uma função que recebe uma string e não retorna nada
+}
+
+export const TopCities = ({onCityClick} : TopCityProps) => {
   //  Estados para gerenciar os dados, o carregamento e possíveis erros
   const [cities, setCities] = useState<TopCity[]>([]);
   const [loading, setLoading] = useState(true);
@@ -34,7 +38,7 @@ export const TopCities = () => {
     fetchTopCities();
   }, []); // O array vazio [] garante que este efeito rode apenas UMA VEZ
 
-  // 4. Renderização condicional baseada no estado
+  // Renderização condicional baseada no estado
   if (loading) {
     return (
       <div className="bg-slate-800 rounded-xl p-4 text-center text-gray-400">
@@ -56,9 +60,9 @@ export const TopCities = () => {
     return null; // Ou uma mensagem como "Nenhuma cidade pesquisada ainda."
   }
 
-  // 5. Renderização da lista de cidades
+  // Renderização da lista de cidades
   return (
-    <div className="bg-slate-800 rounded-xl p-6 shadow-lg w-full">
+    <div className="bg-slate-800 rounded-xl p-6 shadow-lg w-full mt-8">
       <div className="flex items-center gap-2 mb-4">
         <div className="text-yellow-400" />
         <h3 className="text-lg font-semibold text-gray-300">
@@ -70,7 +74,14 @@ export const TopCities = () => {
           <li key={city.id} className="flex justify-between items-baseline text-gray-300">
             <span className="flex items-center gap-3">
               <span className="text-sm font-bold text-gray-500">{index + 1}</span>
-              <p className="capitalize font-medium">{city.name}</p>
+              
+              <button
+                onClick={() => onCityClick(city.name)} // Ao clicar, chama a função do pai!
+                className="capitalize font-medium text-left text-blue-400 hover:underline cursor-pointer"
+              >
+                {city.name}
+              </button>
+
             </span>
             <span className="text-sm font-mono bg-slate-700 px-2 py-1 rounded-md">
               {city.count} {city.count > 1 ? 'buscas' : 'busca'}

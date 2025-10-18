@@ -10,6 +10,7 @@ import { MapComponent } from './components/MapComponent';
 import { ChartSection } from './components/ChartSection';
 import { TopCities } from './components/TopCities';
 import { CompareCity } from './components/CompareCity';
+import { GreenestCities } from './components/GreenestCities';
 
 interface CityData {
   temperature: number;
@@ -53,7 +54,7 @@ export default function Home() {
       <p className="mb-8">Seu mapa interativo de consciência ambiental.</p>
       <div className="w-full max-w-md">
         <SearchBar onSearch={handleSearch} />
-    <TopCities />
+    <TopCities onCityClick={handleSearch} />
       </div>
 
       {loading && <p className="mt-8">Buscando dados...</p>}
@@ -62,7 +63,7 @@ export default function Home() {
       {data && (
         <div className="mt-8 w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-6">
           {data && (
-  <div className="mt-8 w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="mt-8 w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-6">
     {/* Substitua o <pre> ou adicione junto */}
     <CityStats data={data} />
 
@@ -70,14 +71,13 @@ export default function Home() {
     <AirQualityCard data={data} /> 
   </div>
 )}
-          <pre className="col-span-full bg-gray-800 p-4 rounded-md">
-            {JSON.stringify(data, null, 2)}
-          </pre>
+
+          <div className="mt-8 w-full max-w-4xl h-90  md:h-auto">
+             <Map coordinates={data.coordinates} cityName={city} />
+          </div>
+            <GreenestCities onCityClick={handleSearch} />
    <div className="h-full w-full flex ">
     <ChartSection data={data} />
-          </div>
-          <div className="mt-8 w-full max-w-4xl">
-             <Map coordinates={data.coordinates} cityName={city} />
           </div>
             <CompareCity initialCityData={data} initialCityName={city} />
         </div>
