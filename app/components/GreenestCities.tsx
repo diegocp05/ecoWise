@@ -16,13 +16,11 @@ interface GreenestCitiesProps {
 
 export const GreenestCities = ({ onCityClick }: GreenestCitiesProps) => {
   const [cities, setCities] = useState<GreenCity[]>([]);
-  // ... (a lógica de loading e error é idêntica à do TopCities)
 
   useEffect(() => {
     const fetchGreenestCities = async () => {
       try {
         const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
-        // Chame a nova rota
         const response = await axios.get(`${apiUrl}/api/weather/stats/greenest-cities`);
         setCities(response.data);
       } catch (err) { /* ... */ } 

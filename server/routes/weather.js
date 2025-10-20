@@ -117,7 +117,6 @@ router.get('/:city', async (req, res) => {
       no2: no2,
       o3: o3,
     };
-    console.log(no2);
     res.json(responseData);
 
   } catch (error) {

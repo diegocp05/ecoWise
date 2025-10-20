@@ -43,8 +43,8 @@ export default function Home() {
     setError(null);
     setData(null);
     try {
-      // A URL do seu backend. Em produção, será a URL do Railway.
-      const response = await axios.get(`http://localhost:3001/api/weather/${city}`);
+     const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+      const response = await axios.get(`${apiUrl}/api/weather/${city}`);
       setData(response.data);
     } catch (err) {
       setError('Não foi possível encontrar dados para esta cidade. Tente outra.');
@@ -77,7 +77,7 @@ export default function Home() {
 <MetricsPanel data={data} />
             <GreenestCities onCityClick={handleSearch} />
    <div className="h-full w-full flex ">
-    <ChartSection data={data} />
+    {/* <ChartSection data={data} /> */}
           </div>
             <CompareCity initialCityData={data} initialCityName={city} />
         </div>

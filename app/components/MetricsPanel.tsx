@@ -24,8 +24,8 @@ export const MetricsPanel = ({ data }: MetricsPanelProps) => {
       <div className="bg-slate-800 rounded-xl p-6 shadow-lg h-full">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-semibold text-gray-300">Métricas Ambientais</h3>
-          <button onClick={() => setIsModalOpen(true)} className="text-gray-500 hover:text-white">
-            <FaQuestionCircle />
+          <button onClick={() => setIsModalOpen(true)} className="text-gray-500 flex gap-3 hover:text-white">
+           EcoScore  <FaQuestionCircle />
           </button>
         </div>
         <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
