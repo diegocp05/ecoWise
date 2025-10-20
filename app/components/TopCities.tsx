@@ -77,13 +77,13 @@ export const TopCities = ({onCityClick} : TopCityProps) => {
               
               <button
                 onClick={() => onCityClick(city.name)} // Ao clicar, chama a função do pai!
-                className="capitalize font-medium text-left text-blue-400 hover:underline cursor-pointer text-sm md:text-lg"
+                className="capitalize font-medium text-left text-blue-400 hover:underline cursor-pointer text-xs md:text-lg"
               >
                 {city.name}
               </button>
 
             </span>
-            <span className="text-sm font-mono bg-slate-700 px-2 py-1 rounded-md">
+            <span className="text-xs md:text-lg font-mono bg-slate-700 px-2 py-1 rounded-md">
               {city.count} {city.count > 1 ? 'buscas' : 'busca'}
             </span>
           </li>

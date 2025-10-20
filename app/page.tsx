@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 import { useMemo } from 'react';
 import { useState } from 'react';
 import axios from 'axios';
-import { SearchBar } from './components/SearchBar';
+
  import { CityStats } from './components/CityStats'; 
 import { MetricsPanel } from './components/MetricsPanel';
 import { MapComponent } from './components/MapComponent';
@@ -11,6 +11,7 @@ import { ChartSection } from './components/ChartSection';
 import { TopCities } from './components/TopCities';
 import { CompareCity } from './components/CompareCity';
 import { GreenestCities } from './components/GreenestCities';
+import { HeroSection } from './components/HeroSection';
 
 interface CityData {
   temperature: number;
@@ -28,8 +29,7 @@ export default function Home() {
   const [data, setData] = useState<CityData | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [city, setCity] = useState<string>(''); // Guarde o nome da cidade pesquisada
-
+  const [city, setCity] = useState<string>('');
   const Map = useMemo(() => dynamic(
     () => import('./components/MapComponent').then((mod) => mod.MapComponent),
     {
@@ -55,10 +55,8 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center p-12 bg-gray-900 text-white">
-      <h1 className="text-4xl font-bold mb-4">EcoWise</h1>
-      <p className="mb-8">Seu mapa interativo de consciência ambiental.</p>
+      <HeroSection onSearch={handleSearch} />
       <div className="w-full max-w-md">
-        <SearchBar onSearch={handleSearch} />
     <TopCities onCityClick={handleSearch} />
       </div>
 
@@ -73,7 +71,7 @@ export default function Home() {
             </div>
 )}
 
-          <div className="mt-8 w-full max-w-4xl h-90  md:h-60">
+          <div className="mt-8 w-full max-w-4xl md:h-auto h-90">
 <Map coordinates={data.coordinates} cityName={city} />
           </div>
 <MetricsPanel data={data} />
