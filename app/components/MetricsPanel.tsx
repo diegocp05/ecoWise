@@ -4,6 +4,7 @@ import { MetricItem } from './MetricItem'; // Importe o sub-componente
 
 interface MetricsPanelProps {
   data: {
+    temperature: number;
     ecoScore: number;
     visibility: number;
     humidity: number;
@@ -12,6 +13,7 @@ interface MetricsPanelProps {
 }
 
 export const MetricsPanel = ({ data }: MetricsPanelProps) => {
+  let tempRound = Math.round(data.temperature);
   return (
     <div className="bg-slate-800 rounded-xl p-6 shadow-lg h-full">
       <h3 className="text-lg font-semibold text-gray-300 mb-4">
@@ -25,6 +27,13 @@ export const MetricsPanel = ({ data }: MetricsPanelProps) => {
           label="EcoScore"
           value={data.ecoScore}
           unit="/ 100"
+        />
+
+        <MetricItem 
+          icon=''
+          label="Temperatura"
+          value={tempRound}
+          unit="°C"
         />
         
         <MetricItem 
