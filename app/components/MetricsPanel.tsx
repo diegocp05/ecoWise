@@ -16,7 +16,7 @@ interface MetricsPanelProps {
 
 
 export const MetricsPanel = ({ data }: MetricsPanelProps) => {
-  let tempRound = Math.round(data.temperature);
+  const tempRound = Math.round(data.temperature);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (

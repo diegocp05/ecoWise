@@ -1,5 +1,4 @@
 import { FaLeaf, FaExclamationTriangle, FaCheckCircle, FaTimesCircle } from "react-icons/fa"
-import { MdWarning } from "react-icons/md"
 import { PolarAngleAxis, RadialBar, RadialBarChart, ResponsiveContainer } from "recharts"
 
 interface CityStatsProps {

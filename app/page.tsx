@@ -6,8 +6,6 @@ import axios from 'axios';
 
  import { CityStats } from './components/CityStats'; 
 import { MetricsPanel } from './components/MetricsPanel';
-import { MapComponent } from './components/MapComponent';
-import { ChartSection } from './components/ChartSection';
 import { TopCities } from './components/TopCities';
 import { CompareCity } from './components/CompareCity';
 import { GreenestCities } from './components/GreenestCities';
@@ -77,7 +75,6 @@ export default function Home() {
 <MetricsPanel data={data} />
             <GreenestCities onCityClick={handleSearch} />
    <div className="h-full w-full flex ">
-    {/* <ChartSection data={data} /> */}
           </div>
             <CompareCity initialCityData={data} initialCityName={city} />
         </div>
