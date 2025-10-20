@@ -1,79 +1,73 @@
 <div align="center">
-<img src="https://www.google.com/search?q=https://i.imgur.com/309c60.png" alt="EcoWise Screenshot" width="800"/>
 
-<h1 align="center">EcoWise - Dashboard de Consciência Ambiental</h1>
+EcoWise - Dashboard de Consciência Ambiental
 
 <p align="center">
-<strong>Entenda a saúde do nosso planeta, uma cidade de cada vez.</strong>
-<br />
-Um dashboard interativo que fornece dados em tempo real sobre a saúde ecológica de cidades ao redor do mundo, utilizando um <strong>EcoScore</strong> exclusivo para traduzir dados complexos em uma pontuação clara e compreensível.
+<img src="https://www.google.com/search?q=https://img.shields.io/github/stars/diegocp05/ecowise%3Fstyle%3Dfor-the-badge" />
+<img src="https://www.google.com/search?q=https://img.shields.io/github/forks/diegocp05/ecowise%3Fstyle%3Dfor-the-badge" />
+<img src="https://www.google.com/search?q=https://img.shields.io/github/license/diegocp05/ecowise%3Fstyle%3Dfor-the-badge" />
 </p>
 
 <p align="center">
-<a href="https://www.google.com/search?q=https://ecowise-demo.vercel.app" target="_blank">
-<img src="https://www.google.com/search?q=https://img.shields.io/badge/Acessar_Demo-000000%3Fstyle%3Dfor-the-badge%26logo%3Dvercel%26logoColor%3Dwhite" alt="Acessar Demo"/>
-</a>
+Uma aplicação web moderna e interativa que analisa a saúde ambiental de cidades ao redor do mundo. Utilizando múltiplas APIs e um algoritmo <strong>EcoScore</strong> exclusivo, o EcoWise traduz dados complexos de poluição e clima em uma pontuação clara e acionável, promovendo a consciência ecológica.
 </p>
+
+<h1 align="center">
+<img height="400" alt="Planeta Terra girando com pontos de dados" title="Planeta Terra" src="https://www.google.com/search?q=https://media1.tenor.com/m/V20-1h_a_yAAAAAd/world-earth.gif"/>
+</h1>
 </div>
 
 🌟 Funcionalidades
 
-📊 Dados em Tempo Real: Busca instantânea de dados climáticos e de poluição para qualquer cidade do mundo, integrando múltiplas APIs externas.
+📊 Dados em Tempo Real: Busca instantânea de dados climáticos e de poluição para qualquer cidade do mundo.
 
-💯 EcoScore Inteligente: Um algoritmo exclusivo que analisa múltiplos fatores (AQI, poluentes industriais, clima) para gerar uma pontuação de 0 a 100, facilitando a comparação da saúde ambiental.
+💯 EcoScore Inteligente: Um algoritmo exclusivo que analisa AQI, poluentes industriais e clima para gerar uma pontuação de 0 a 100.
 
 🗺️ Mapa Interativo: Visualização geográfica da cidade pesquisada com marcadores dinâmicos via Leaflet.
 
-📈 Visualização de Dados: Gráficos e painéis intuitivos (Recharts) que apresentam o Índice de Qualidade do Ar (AQI) e outras métricas de forma simples e visual.
+📈 Visualização de Dados: Gráficos e painéis intuitivos (Recharts) que apresentam métricas complexas de forma simples e visual.
 
 ⚖️ Ferramenta de Comparação: Compare as métricas ambientais de duas cidades lado a lado para obter insights diretos.
 
-🏆 Rankings Dinâmicos: Listas atualizadas em tempo real das cidades mais pesquisadas e daquelas com o melhor EcoScore, com dados persistidos em um banco PostgreSQL.
+🏆 Rankings Dinâmicos: Listas atualizadas em tempo real das cidades mais pesquisadas e daquelas com o melhor EcoScore.
 
-🛠️ Tecnologias e Ferramentas
+📡 URL Base da API
 
-<p align="center">
-<img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js"/>
-<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React"/>
-<img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/>
-<img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js"/>
-<img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" alt="Express.js"/>
-<img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL"/>
-<img src="https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white" alt="Prisma"/>
-<img src="https://img.shields.io/badge/TailwindCSS-38B2AC?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="TailwindCSS"/>
-</p>
+# A API está hospedada no Railway (substitua pela sua URL)
+[https://ecowise-backend-production.up.railway.app](https://ecowise-backend-production.up.railway.app)
 
-📡 API EcoWise
 
-A aplicação é alimentada por uma API RESTful própria construída com Node.js e Express.
+📋 Rotas da API
 
-📋 Rotas Principais
+Obter Dados Ambientais de uma Cidade
 
-Método
+GET /api/weather/:city
 
-Endpoint
 
-Descrição
+Retorna um objeto completo com dados climáticos, de poluição e o EcoScore para a cidade especificada.
 
-GET
+Exemplo de Uso:
 
-/api/weather/:city
+fetch("[https://ecowise-backend-production.up.railway.app/api/weather/Serrana](https://ecowise-backend-production.up.railway.app/api/weather/Serrana)")
+    .then(response => response.json())
+    .then(data => console.log(data));
 
-Retorna dados ambientais completos da cidade.
 
-GET
+Listar Cidades Mais Buscadas
 
-/api/weather/stats/top-cities
+GET /api/weather/stats/top-cities
 
-Retorna o ranking das 5 cidades mais pesquisadas.
 
-GET
+Retorna um array com as 5 cidades mais pesquisadas.
 
-/api/weather/stats/greenest-cities
+Listar Cidades com Melhor EcoScore
 
-Retorna o ranking das 5 cidades com melhor EcoScore.
+GET /api/weather/stats/greenest-cities
 
-📄 Exemplo de Resposta (/api/weather/:city)
+
+Retorna um array com as 5 cidades com o maior EcoScore.
+
+📄 Formato da Resposta (/api/weather/:city)
 
 {
   "name": "Serrana",
@@ -94,66 +88,62 @@ Retorna o ranking das 5 cidades com melhor EcoScore.
 }
 
 
+🔧 Tecnologias Utilizadas
+
+Frontend: Next.js + React + TypeScript
+
+Backend: Node.js + Express
+
+Banco de Dados: PostgreSQL + Prisma ORM
+
+Estilização: Tailwind CSS
+
+Visualização: Recharts & React-Leaflet
+
+Deploy: Vercel (Frontend) & Railway (Backend + DB)
+
 📚 Como Executar Localmente
 
-Siga os passos abaixo para configurar e rodar o projeto no seu ambiente.
-
-1. Clone o Repositório
+Clone o repositório
 
 git clone [https://github.com/diegocp05/ecowise.git](https://github.com/diegocp05/ecowise.git)
 cd ecowise
 
 
-2. Configure o Backend
+Configure e inicie o Backend
 
-# Navegue para a pasta do servidor
 cd server
-
-# Instale as dependências
 npm install
 
-# Crie um arquivo .env na pasta /server e adicione as variáveis
-DATABASE_URL="sua_url_do_postgresql"
-OPENWEATHER_API_KEY="sua_chave_da_api_openweathermap"
-IQAIR_API_KEY="sua_chave_da_api_iqair"
+# Crie um arquivo .env e adicione suas chaves de API e URL do banco
+# Exemplo no arquivo .env.example
 
-# Execute as migrações do Prisma
 npx prisma migrate dev
-
-# Inicie o servidor backend (em um terminal)
 npm run dev
 
 
-3. Configure o Frontend
+Configure e inicie o Frontend (em um novo terminal)
 
-# Volte para a raiz do projeto (ecowise)
-cd ..
-
-# Instale as dependências
+# Na raiz do projeto (ecowise)
 npm install
 
-# Crie um arquivo .env.local na raiz do projeto
+# Crie um arquivo .env.local e adicione a URL do backend
 NEXT_PUBLIC_API_URL="http://localhost:3001"
 
-# Inicie o servidor frontend (em outro terminal)
 npm run dev
 
 
-4. Acesse a Aplicação
-Abra seu navegador e acesse http://localhost:3000.
+A aplicação estará disponível em http://localhost:3000
 
 📝 Licença
 
 Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
 
-<div align="center">
-<h3>Feito com ❤️ por Diego Costa</h3>
+🚀 Autor
+
+<img height="100" src="https://avatars.githubusercontent.com/u/80592413?v=4">
+<sub>@diegocp05</sub>
+
 <p align="center">
-<a href="https://github.com/diegocp05" target="_blank">
-<img src="https://www.google.com/search?q=https://img.shields.io/badge/GitHub-181717%3Fstyle%3Dfor-the-badge%26logo%3Dgithub%26logoColor%3Dwhite" alt="github"/>
-</a>
-<a href="https://www.linkedin.com/in/diego-costa-6a6920212/" target="_blank">
-<img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="linkedin"/>
-</a>
+Feito com ❤️ por <a href="https://github.com/diegocp05">Diego Costa</a>
 </p>
-</div>
