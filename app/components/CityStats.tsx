@@ -1,4 +1,5 @@
-import { FaLeaf, FaExclamationTriangle, FaCheckCircle, FaTimesCircle } from "react-icons/fa"
+import { FaCheckCircle, FaLeaf, FaTimesCircle } from "react-icons/fa"
+import { MdWarning } from "react-icons/md"
 import { PolarAngleAxis, RadialBar, RadialBarChart, ResponsiveContainer } from "recharts"
 
 interface CityStatsProps {
@@ -11,32 +12,34 @@ interface CityStatsProps {
   }
 }
 
+// Substitua sua função por esta, que agora tem textColor e icon de volta
 const getAQIStatus = (aqi: number) => {
-  if (aqi <= 50)
-    return {
-      status: "Boa",
-      color: "#22c55e", // verde
-      recommendation: "Qualidade do ar excelente! Aproveite atividades ao ar livre.",
-    };
-  if (aqi <= 100)
-    return {
-      status: "Moderada",
-      color: "#eab308", // amarelo
-      recommendation: "Qualidade do ar aceitável. Pessoas sensíveis devem considerar reduzir atividades prolongadas ao ar livre.",
-    };
-  if (aqi <= 150)
-    return {
-      status: "Insalubre para Grupos Sensíveis",
-      color: "#f97316", // laranja
-      recommendation: "Grupos sensíveis podem sentir efeitos na saúde. Limite atividades ao ar livre.",
-    };
-  // ... continue para as outras cores ...
-  return {
-    status: "Perigosa",
-    color: "#7e22ce", // roxo escuro/marrom
-    recommendation: "Emergência de saúde! Evite qualquer atividade ao ar livre.",
-  };
+  if (aqi <= 50)
+    return {
+      status: "Boa",
+      color: "#22c55e", // Hex para Recharts
+      textColor: "text-green-400", // Classe para Tailwind
+      icon: <FaCheckCircle />,
+      recommendation: "Qualidade do ar excelente! Aproveite atividades ao ar livre.",
+    };
+  if (aqi <= 100)
+   return {
+       status: "Moderada",
+      color: "#eab308", // Hex para Recharts
+      textColor: "text-yellow-400", // Classe para Tailwind
+      icon: <MdWarning />,
+      recommendation: "Qualidade do ar aceitável. Pessoas sensíveis devem considerar reduzir atividades prolongadas ao ar livre.",
+    };
+ 
+  return {
+    status: "Perigosa",
+    color: "#7e22ce", // Hex para Recharts
+    textColor: "text-red-300", // Classe para Tailwind
+    icon: <FaTimesCircle />,
+    recommendation: "Emergência de saúde! Evite qualquer atividade ao ar livre.",
+  };
 };
+
 
 const getEcoScoreStatus = (score: number) => {
   if (score >= 80) return { label: "Excelente", color: "text-green-400" }

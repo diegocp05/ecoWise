@@ -39,6 +39,7 @@ export default function Home() {
   const handleSearch = async (city: string) => {
     setLoading(true);
     setError(null);
+    setCity(city);
     setData(null);
     try {
      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
@@ -74,7 +75,7 @@ export default function Home() {
           </div>
 <MetricsPanel data={data} />
             <GreenestCities onCityClick={handleSearch} />
-   <div className="h-full w-full flex ">
+          <div className="h-full w-full flex ">
           </div>
             <CompareCity initialCityData={data} initialCityName={city} />
         </div>
