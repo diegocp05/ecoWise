@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-// Ícone para dar um toque especial
+
 
 interface TopCity {
   id: number;

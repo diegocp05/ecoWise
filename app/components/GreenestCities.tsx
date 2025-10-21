@@ -16,7 +16,6 @@ interface GreenestCitiesProps {
 
 export const GreenestCities = ({ onCityClick }: GreenestCitiesProps) => {
   const [cities, setCities] = useState<GreenCity[]>([]);
-  // 1. Adicione estados para loading e erro
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -27,18 +26,15 @@ export const GreenestCities = ({ onCityClick }: GreenestCitiesProps) => {
         const response = await axios.get(`${apiUrl}/api/weather/stats/greenest-cities`);
         setCities(response.data);
       } catch (err) {
-        // 2. Defina uma mensagem de erro se a busca falhar
         setError('Não foi possível carregar o ranking.');
         console.error(err);
       } finally {
-        // 3. Pare o loading, independentemente do resultado
         setLoading(false);
       }
     };
     fetchGreenestCities();
   }, []);
 
-  // 4. Renderize um estado de carregamento
   if (loading) {
     return (
       <div className="bg-slate-800 rounded-xl p-6 text-center text-gray-400">
@@ -47,7 +43,6 @@ export const GreenestCities = ({ onCityClick }: GreenestCitiesProps) => {
     );
   }
 
-  // 5. Renderize um estado de erro
   if (error) {
     return (
       <div className="bg-red-900/50 border border-red-700 rounded-xl p-6 text-center text-red-300">
@@ -56,7 +51,7 @@ export const GreenestCities = ({ onCityClick }: GreenestCitiesProps) => {
     );
   }
 
-  // Se não houver cidades, podemos mostrar uma mensagem ou nada
+ 
   if (cities.length === 0) {
     return null; // Agora esta linha só executa se a busca foi um sucesso, mas não retornou cidades
   }

@@ -1,7 +1,7 @@
 'use client'; 
 
 import { MapContainer, TileLayer, Marker, Tooltip } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css'; // Importa o CSS obrigatório do Leaflet
+import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
 // --- Correção do Ícone Padrão ---

@@ -1,4 +1,3 @@
-// app/components/RankingsTabs.tsx
 'use client';
 
 import { useState } from 'react';

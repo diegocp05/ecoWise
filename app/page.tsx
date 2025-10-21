@@ -1,62 +1,74 @@
-'use client';
-import dynamic from 'next/dynamic';
-import { useMemo } from 'react';
-import { useState } from 'react';
-import axios from 'axios';
+"use client"
+import dynamic from "next/dynamic"
+import { useMemo } from "react"
+import { useState } from "react"
+import axios from "axios"
 
- import { CityStats } from './components/CityStats'; 
-import { MetricsPanel } from './components/MetricsPanel';
-import { TopCities } from './components/TopCities';
-import { CompareCity } from './components/CompareCity';
-import { GreenestCities } from './components/GreenestCities';
-import { HeroSection } from './components/HeroSection';
+import { CityStats } from "./components/CityStats"
+import { MetricsPanel } from "./components/MetricsPanel"
+import { TopCities } from "./components/TopCities"
+import { CompareCity } from "./components/CompareCity"
+import { GreenestCities } from "./components/GreenestCities"
+import { HeroSection } from "./components/HeroSection"
+import { ComparisonCharts } from "./components/ComparisonCharts"
 
 interface CityData {
-  temperature: number;
-  aqi: number;
-  mainPollutant: string;
-  coordinates: { lat: number; lon: number };
-  name: string;
-  humidity: number;
-  windSpeed: number;
-  visibility: number;
-  ecoScore: number;
+  temperature: number
+  aqi: number
+  mainPollutant: string
+  coordinates: { lat: number; lon: number }
+  name: string
+  humidity: number
+  windSpeed: number
+  visibility: number
+  ecoScore: number
 }
 
 export default function Home() {
-  const [data, setData] = useState<CityData | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [city, setCity] = useState<string>('');
-  const Map = useMemo(() => dynamic(
-    () => import('./components/MapComponent').then((mod) => mod.MapComponent),
-    {
-      loading: () => <p className="text-center">Carregando mapa...</p>, // Mensagem enquanto o mapa carrega
-      ssr: false // A parte mais importante: desativa a renderização no servidor
-    }
-  ), []);
+  const [data, setData] = useState<CityData | null>(null)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [city, setCity] = useState<string>("")
+  const [comparisonData, setComparisonData] = useState<CityData | null>(null)
+  const [comparisonCity, setComparisonCity] = useState<string>("")
+
+  const Map = useMemo(
+    () =>
+      dynamic(() => import("./components/MapComponent").then((mod) => mod.MapComponent), {
+        loading: () => <p className="text-center">Carregando mapa...</p>,
+        ssr: false,
+      }),
+    [],
+  )
 
   const handleSearch = async (city: string) => {
-    setLoading(true);
-    setError(null);
-    setCity(city);
-    setData(null);
+    setLoading(true)
+    setError(null)
+    setCity(city)
+    setData(null)
+    setComparisonData(null)
+    setComparisonCity("")
     try {
-     const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
-      const response = await axios.get(`${apiUrl}/api/weather/${city}`);
-      setData(response.data);
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001"
+      const response = await axios.get(`${apiUrl}/api/weather/${city}`)
+      setData(response.data)
     } catch (err) {
-      setError('Não foi possível encontrar dados para esta cidade. Tente outra.');
+      setError("Não foi possível encontrar dados para esta cidade. Tente outra.")
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
+
+  const handleComparisonComplete = (cityName: string, cityData: CityData) => {
+    setComparisonData(cityData)
+    setComparisonCity(cityName)
+  }
 
   return (
     <main className="flex min-h-screen flex-col items-center p-12 bg-gray-900 text-white">
       <HeroSection onSearch={handleSearch} />
       <div className="w-full max-w-md">
-    <TopCities onCityClick={handleSearch} />
+        <TopCities onCityClick={handleSearch} />
       </div>
 
       {loading && <p className="mt-8">Buscando dados...</p>}
@@ -68,18 +80,22 @@ export default function Home() {
             <div className="mt-8 w-full max-w-4xl gap-6">
               <CityStats data={data} />
             </div>
-)}
+          )}
 
           <div className="mt-8 w-full max-w-4xl md:h-auto h-90">
-<Map coordinates={data.coordinates} cityName={city} />
+            <Map coordinates={data.coordinates} cityName={city} />
           </div>
-<MetricsPanel data={data} />
-            <GreenestCities onCityClick={handleSearch} />
-          <div className="h-full w-full flex ">
-          </div>
-            <CompareCity initialCityData={data} initialCityName={city} />
+          <MetricsPanel data={data} />
+          <GreenestCities onCityClick={handleSearch} />
+          {comparisonData && comparisonCity && (
+            <div className="md:col-span-2">
+              <ComparisonCharts cityA={data} cityAName={city} cityB={comparisonData} cityBName={comparisonCity} />
+            </div>
+          )}
+          <CompareCity initialCityData={data} initialCityName={city} onComparisonComplete={handleComparisonComplete} />
+
         </div>
       )}
     </main>
-  );
+  )
 }
