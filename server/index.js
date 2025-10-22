@@ -10,10 +10,10 @@ const PORT = process.env.PORT || 3001;
 // --- CONFIGURAÇÃO DO CORS ---
 // Adicione a URL do seu deploy da Vercel aqui
 const allowedOrigins = [
-  'http://localhost:3000', // Para desenvolvimento local
-  'https://eco-wise-j2ob6s3vs-diegos-projects-9360246e.vercel.app', // << ADICIONE ESTA LINHA
-   'https://eco-wise-j2ob6s3vs-diegos-projects-9360246e.vercel.app/'
-];
+  'http://localhost:3000',
+  'https://eco-wise-j2ob6s3vs-diegos-projects-9360246e.vercel.app', // A URL anterior
+  'https://eco-wise-h28r6jtfb-diegos-projects-9360246e.vercel.app',// << ADICIONE ESTA LINHA
+];  
 
 const corsOptions = {
   origin: function (origin, callback) {
