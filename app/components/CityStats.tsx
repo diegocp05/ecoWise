@@ -111,7 +111,7 @@ export const CityStats = ({ data }: CityStatsProps) => {
           {aqi}
         </p>
         <p className="text-md font-semibold" style={{ color: aqiInfo.color }}>
-          {aqiInfo.level}
+          {aqiInfo.status}
         </p>
       </div>
     </div>
