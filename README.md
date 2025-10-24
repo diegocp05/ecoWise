@@ -34,9 +34,8 @@
 
 ## 📦 URL BASE
 
-Substitua pela URL da sua API no Railway:
 
-🔗 [https://ecowise-backend-production.up.railway.app](https://ecowise-backend-production.up.railway.app)
+🔗 https://eco-wise-h28r6jtfb-diegos-projects-9360246e.vercel.app/
 
 ---
 
